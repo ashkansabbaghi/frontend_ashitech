@@ -1,0 +1,158 @@
+@import 'var';
+//***************************** mixin *****************************\\
+
+
+//padding
+@mixin parent ($font, $size, $float_img, $img_h, $margin) {
+    margin: $margin 0 0 0;
+
+    .sub-txt {
+        align-self: center;
+        z-index: 10;
+
+        .title {
+            padding: 0 0 20px 40px;
+            font-family: $font;
+            font-size: $size;
+            color: $color_txt_dark;
+            display: inline-block;
+            cursor: default;
+        }
+
+        .dec {
+            font-size: $font_size_dec;
+            color: $color_font_size_dec;
+            padding: 0 20px;
+            cursor: default;
+        }
+
+        .content {
+            font-family: $font-content;
+            padding: 0 0 30px 0;
+            font-size: $font_size_dec;
+            line-height: 200%;
+            cursor: default;
+        }
+
+        .btn {
+            &.m {
+                margin: 0 20px 0 40px;
+            }
+        }
+
+        @include responsive (t) {
+            text-align: center;
+            padding: 50px 100px;
+
+            .title {
+                padding: 0 0 20px;
+            }
+
+            .btn {
+                &.m {
+                    margin: 0 10px 0;
+                }
+            }
+        }
+
+        @include responsive (m) {
+            padding: 50px 30px;
+
+            .title {
+                font-size: $font_title_m;
+            }
+
+            .dec {
+                font-size: $font_size_dec_m;
+
+            }
+
+            .content {
+                font-size: $font_size_dec_m;
+            }
+
+            .btn {
+                &.m {
+                    margin: 0 0 20px 0;
+                }
+            }
+        }
+    }
+
+    .sub-img {
+        .img-float {
+            float: $float_img;
+        }
+
+        .img-h {
+            width: auto;
+            max-height: $img_h;
+        }
+
+        @include responsive(t) {
+            text-align: center;
+
+            .w-l-100 {
+                // width: 100%;
+                height: auto;
+            }
+
+            .img-float {
+                float: none;
+                text-align: center;
+            }
+        }
+    }
+
+
+}
+
+@mixin center_row ($top) {
+    .row {
+        position: relative;
+        top: $top;
+        bottom: 0;
+    }
+}
+
+@mixin animated-show {
+
+    animation-name: rotate;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+
+
+    @keyframes rotate {
+        0% {
+            transform: top;
+        }
+
+        100% {
+            width: 100%;
+            visibility: visible;
+        }
+    }
+
+}
+
+@mixin input-custom {
+    ::placeholder {
+        color: $color_txt_dark;
+        opacity: 0.3;
+    }
+
+    .input-custom {
+        width: 100%;
+        padding: 10px 20px;
+        margin: 15px 0px;
+        border-radius: 10px;
+        box-shadow: inset 3px 3px 6px -2px rgb(0, 0, 0, 0.25);
+        border: none;
+
+        &:focus-visible {
+            border: none;
+            outline: none;
+            box-shadow: inset 3px 3px 6px -2px $color_txt_a_active;
+        }
+    }
+}

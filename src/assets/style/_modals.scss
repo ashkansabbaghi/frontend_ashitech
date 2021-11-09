@@ -1,0 +1,48 @@
+@import "var";
+@import "responsive";
+
+
+// modals
+.modal-list {
+    .modal-content {
+        border-radius: 15px;
+
+        .link {
+            font-family: 'IRANSansWeb_bold';
+            font-size: 14px;
+            color: $bg_core_dark;
+            padding: 25px;
+            text-align: center;
+            border-bottom: 1px solid $color_font_size_dec;
+
+            &.delete {
+                color: rgb(143, 0, 0)
+            }
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.055);
+            }
+        }
+    }
+}
+
+
+.modal-edit-profile {
+    @include input-custom;
+
+    ::placeholder {
+        color: $color_txt_dark;
+        opacity: 0.4;
+        font-size: 12px;
+    }
+
+    .modal-content {
+        border-radius: 15px;
+        background-color:$bg_core;
+    }
+
+    .btn-update {
+        box-shadow: none;
+        color: green;
+    }
+}
