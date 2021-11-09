@@ -2,6 +2,7 @@
   <div class="About" @scroll="hScroll">
     <div class="container animate__animated animate__fadeIn">
       <!-- about us -->
+      <!-- ashkan -->
       <div class="container-fluid parent ">
         <div class="row">
           <div class="col-lg-6 sub-txt">
