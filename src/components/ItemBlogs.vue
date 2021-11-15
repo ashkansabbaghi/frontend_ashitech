@@ -364,7 +364,6 @@ export default {
   computed: {
     filterBlogs: function () {
       return this.textBlogs.filter((blog) => {
-        console.log(blog);
         return blog.caption.match(this.textSearch);
         // return blog;
       });

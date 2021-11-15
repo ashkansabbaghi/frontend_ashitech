@@ -1,13 +1,16 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {
+  createRouter,
+  createWebHistory
+} from 'vue-router'
 import Home from '@/views/Home.vue'
 import About from '@/views/About.vue'
 import Product from '@/views/Product.vue'
 import Blogs from '@/views/Blogs.vue'
 import Login from '@/views/Login'
 import Dashboard from '@/views/Dashboard'
+import store from '../store'
 
-const routes = [
-  {
+const routes = [{
     path: '/Home',
     name: 'Home',
     component: Home
@@ -35,7 +38,10 @@ const routes = [
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: Dashboard
+    component: Dashboard,
+    meta: {
+      requireLogin: true
+    }
   },
 ]
 
@@ -44,4 +50,11 @@ const router = createRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requireLogin) && !store.state.isToken) {
+    next('/login')
+  } else {
+    next()
+  }
+})
 export default router

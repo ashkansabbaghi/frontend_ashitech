@@ -13,8 +13,15 @@
               data-bs-target="#modalProfile"
             >
               <img
+              v-if="user.profile.image"
                 class="dashboard-img"
                 :src="user.profile.image"
+                alt="profile-img"
+              />
+              <img
+              v-else
+                class="dashboard-img"
+                src="@/assets/files/img/logo-ahitech.svg"
                 alt="profile-img"
               />
               <!-- src="@/assets/files/img/profile-1.png" -->
@@ -490,13 +497,7 @@ export default {
     Chart,
   },
   computed: {
-    ...mapState({ status: "status", user: "user", logout: "logout" }),
-
-    // currentUser: {
-    //   get() {
-    //     return this.$store.state.user;
-    //   },
-    // },
+    ...mapState({user: "user", logout: "logout" }),
   },
   async created() {
     axios.defaults.headers.common["Authorization"] = `token ${this.token}`;

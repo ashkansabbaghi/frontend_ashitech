@@ -323,6 +323,7 @@
                     border: none;
                     width: 100%;
                     border-radius: 51px;
+                    height: 50px;
                 }
 
 
@@ -648,6 +649,12 @@
         }
 
 
+    }
+    .loading_blog{
+        position: relative;
+        .loadingio-spinner-ellipsis-e0ra3xed6zw{
+            height: 100px;
+        }
     }
 }
 

@@ -1,9 +1,7 @@
 <template>
   <div class="blogs-page">
     <!-- slider category -->
-    <div v-if="categories.length > 0">
-
-    </div>
+    <div v-if="categories.length > 0"></div>
     <!-- end slider category -->
     <div class="container animate__animated animate__fadeIn blogs">
       <!-- search -->
@@ -27,17 +25,24 @@
       </div>
       <!-- end search -->
 
-      <ItemBlogs :text-search="search" :text-blogs="public_blogs" />
+      <!-- loading -->
+      <span v-if="loading" class="loading_blog"
+        ><div class="loadingio-spinner-ellipsis-e0ra3xed6zw">
+          <div class="ldio-fa1os3dl4u4">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div></div
+      ></span>
+
+      <ItemBlogs v-else :text-search="search" :text-blogs="public_blogs" />
     </div>
   </div>
 </template>
 
 <script>
-// let BASE_URL = "http://127.0.0.1:8000/api/v1";
-
-// let API_POSTS = "/blogs/";
-// let API_CAT = "/categoryPost/";
-
 import { mapState } from "vuex";
 import ItemBlogs from "@/components/ItemBlogs";
 export default {
@@ -47,20 +52,21 @@ export default {
     blogs: [],
     categories: [],
     postCategory: [],
+    // loading: false,
   }),
   components: {
-
     ItemBlogs,
   },
   async created() {
+    // this.loading = true;
     this.$store.dispatch("getListPublicBlogs");
+    // this.loading = false;
   },
 
   computed: {
-     ...mapState({ public_blogs: "Public_Blogs" }),
+    ...mapState({ public_blogs: "Public_Blogs", loading: "loading_get_posts" }),
   },
 
-  methods: {
-  },
+  methods: {},
 };
 </script>

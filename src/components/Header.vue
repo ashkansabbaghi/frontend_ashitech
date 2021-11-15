@@ -1,9 +1,10 @@
 <template>
   <!-- header -->
-  <header class="header"><!--sticky-top-->
+  <header class="header">
+    <!--sticky-top-->
     <div class="container animate__animated animate__fadeIn">
-      <nav class="navbar  navbar-expand-md">
-        <div class="container ">
+      <nav class="navbar navbar-expand-md">
+        <div class="container">
           <!-- logo -->
           <router-link to="/Home"
             ><a class="navbar-brand" href="#">
@@ -48,14 +49,15 @@
                   ><a class="nav-link" href="#">Blogs</a></router-link
                 >
               </li>
-              <li class="nav-item" v-if="!token">
+               <li class="nav-item" v-if="$store.state.isToken" >
+                <router-link to="/dashboard"
+                  ><a class="nav-link" href="#">Dashboard</a></router-link
+                >
+              </li>
+              <li class="nav-item" v-else>
                 <router-link to="/login"
                   ><a class="nav-link" href="#">logIn</a></router-link
                 >
-              </li>
-              <li class="nav-item" v-if="token">
-                <router-link to="/dashboard"
-                  ><a class="nav-link" href="#">Dashboard</a></router-link>
               </li>
             </ul>
           </div>
@@ -67,16 +69,24 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Header",
+  beforeCreate() {
+    this.$store.commit("initializeStore");
+    const token = this.$store.state.token;
+    if (token) {
+      axios.defaults.headers.common["Authorization"] = "token " + token;
+    }else {
+      axios.defaults.headers.common["Authorization"] = "";
+    }
+  },
   data: () => ({
     select: undefined,
     isActiveMenuMob: false,
-    value_scroll : 0,
-    token: localStorage.getItem("token"),
+    value_scroll: 0,
   }),
-  methods:{
-
-  }
+  methods: {},
 };
 </script>

@@ -4,13 +4,13 @@ import {
 import axios from 'axios';
 import createPersistedState from "vuex-persistedstate";
 
-let URL_login = "http://127.0.0.1:8000/api/v1/login/"
-let URL_user = "http://127.0.0.1:8000/api/v1/user/"
-let URL_logOut = "http://127.0.0.1:8000/api/v1/logout/"
-let URL_Public_Blogs = "http://127.0.0.1:8000/api/v1/blogs/"
+// let URL_login = "api/v1/login/"
+let URL_user = "user/"
+let URL_logOut = "logout/"
+let URL_Public_Blogs = "blogs/"
 
-let URL_CHANGE_USER = "http://127.0.0.1:8000/api/v1/users/"
-let URL_CHANGE_PROFILE = "http://127.0.0.1:8000/api/v1/profile/"
+let URL_CHANGE_USER = "users/"
+let URL_CHANGE_PROFILE = "profile/"
 
 export default createStore({
   plugins: [createPersistedState()],
@@ -18,57 +18,36 @@ export default createStore({
     user: {},
     Public_Blogs: {},
     loading: false,
-    status: '',
-    statusLogOut: '',
+    loading_get_posts: false,
+    token: "",
+    isToken: false,
   },
   mutations: {
+    initializeStore(state) {
+      if (localStorage.getItem('token')) {
+        state.token = localStorage.getItem('token');
+        state.isToken = true;
+      } else {
+        state.token = "";
+        state.isToken = false;
+      }
+    },
+    setToken(state, token) {
+      state.token = token;
+      state.isToken = true;
+    },
+    removeToken(state) {
+      state.token = "";
+      state.isToken = false;
+    },
     setUser(state, response) {
-      // console.log(response.data)
-      state.status = response.status //200
       state.user = response.data
     },
-    setUserToken(state, response) {
-      console.log(response.data)
-      //save token
-      localStorage.setItem('token', response.data.token)
-      //save user
-      state.user = response.data.user
-      // change direction
-      window.setTimeout(function () {
-        location.replace('/dashboard')
-      }, 500)
-    },
     setPublicBlogs(state, response) {
-      // console.log(response.data)
       state.Public_Blogs = response.data
     }
   },
   actions: {
-    async loginUser({
-      commit
-    }, user) {
-      axios
-        .post(URL_login, {
-          username: user.username,
-          password: user.password,
-        })
-        .then(response => {
-          if (response.data.token) {
-            this.state.status = response.status
-
-            // console.log(response.data.user)
-            commit("setUserToken", response)
-
-          }
-        })
-        .catch(error => {
-          if (error.response.status === 400) {
-            localStorage.removeItem('token')
-            this.state.status = error.response.status
-          }
-        })
-    },
-
     // eslint-disable-next-line no-empty-pattern
     async logOutUser({}, token) {
       axios.post(URL_logOut, {
@@ -78,12 +57,12 @@ export default createStore({
           'Authorization': `token ${token}`
         }
       }).then(response => {
-        this.statusLogOut = response.status
+        console.log(response);
         localStorage.removeItem('token')
         localStorage.removeItem('vuex')
         window.setTimeout(function () {
           location.replace('/login')
-        }, 500)
+        }, 300)
       }).catch(err => {
         console.log(err.status)
       })
@@ -91,12 +70,14 @@ export default createStore({
 
     // eslint-disable-next-line no-empty-pattern
     async updateProfile({}, user) {
-      // console.log(user.profile)
+
+      // loading
+      this.state.loading = true
 
       const requestChangeUser = axios.put(URL_CHANGE_USER + user.id, {
-          id: user.id,
-          username: user.username,
-          email: user.email
+        id: user.id,
+        username: user.username,
+        email: user.email
       }, {
         headers: {
           'Authorization': `token ${localStorage.getItem('token')}`
@@ -105,18 +86,19 @@ export default createStore({
       const requestChangeProfile = axios.put(URL_CHANGE_PROFILE + user.id, {
         user: user.profile.user,
         bio: user.profile.bio,
-        mobile : user.profile.mobile,
+        mobile: user.profile.mobile,
       }, {
         headers: {
           'Authorization': `token ${localStorage.getItem('token')}`
         }
       })
-      // const requestThree = axios.get(three)
 
       axios.all([requestChangeUser, requestChangeProfile]).then(axios.spread((...responses) => {
         const responseUser = responses[0]
         const responseProfile = responses[1]
-        // const responseThree = responses[2]
+
+        // loading
+        this.state.loading = false
 
         // use/access the results
         console.log(responseUser);
@@ -124,6 +106,8 @@ export default createStore({
         location.replace('/dashboard')
 
       })).catch(errors => {
+        // loading
+        this.state.loading = false
         // react on errors.
         console.error(errors);
       })
@@ -134,7 +118,6 @@ export default createStore({
       commit
     }) {
       axios.get(URL_user).then(response => {
-        // console.log(response.data)
         commit("setUser", response)
       })
     },
@@ -142,7 +125,9 @@ export default createStore({
     async getListPublicBlogs({
       commit
     }) {
+      this.state.loading_get_posts = true;
       axios.get(URL_Public_Blogs).then(response => {
+        this.state.loading_get_posts = false;
         commit("setPublicBlogs", response)
       })
     }
