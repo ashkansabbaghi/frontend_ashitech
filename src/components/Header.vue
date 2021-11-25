@@ -6,17 +6,16 @@
       <nav class="navbar navbar-expand-md">
         <div class="container">
           <!-- logo -->
-          <router-link to="/Home"
-            ><a class="navbar-brand" href="#">
-              <img
-                class="img-logo"
-                src="@/assets/files/img/logo.svg"
-                alt="logo"
-                loading="lazy"
-              /> </a
-          ></router-link>
+          <router-link to="/Home" class="navbar-brand" href="#">
+            <img
+              class="img-logo"
+              src="@/assets/files/img/logo.svg"
+              alt="logo"
+              loading="lazy"
+            />
+          </router-link>
           <!-- btn responsive menu -->
-          <button
+          <!-- <button
             class="navbar-toggler d-lg-none"
             type="button"
             data-toggle="collapse"
@@ -27,9 +26,9 @@
             @click="isActiveMenuMob = !isActiveMenuMob"
           >
             <i class="fa fa-bars"></i>
-          </button>
+          </button> -->
           <div
-            class="collapse navbar-collapse"
+            class="collapse navbar-collapse active"
             :class="{ active: isActiveMenuMob }"
             id="collapsibleNavId"
           >
@@ -39,17 +38,17 @@
                   ><a class="nav-link" href="#">About</a></router-link
                 >
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <router-link to="/product"
                   ><a class="nav-link" href="#">Things you need</a></router-link
                 >
-              </li>
+              </li> -->
               <li class="nav-item">
                 <router-link to="/blogs"
                   ><a class="nav-link" href="#">Blogs</a></router-link
                 >
               </li>
-               <li class="nav-item" v-if="$store.state.isToken" >
+              <li class="nav-item" v-if="$store.state.isToken">
                 <router-link to="/dashboard"
                   ><a class="nav-link" href="#">Dashboard</a></router-link
                 >
@@ -78,7 +77,7 @@ export default {
     const token = this.$store.state.token;
     if (token) {
       axios.defaults.headers.common["Authorization"] = "token " + token;
-    }else {
+    } else {
       axios.defaults.headers.common["Authorization"] = "";
     }
   },

@@ -6,11 +6,31 @@
 .parent {
     @include parent(prototype, $font_title_top, right, $img_h, $margin_parent);
     @include center_row(20%);
+
+    &.frontend-develop {
+        margin-top: 300px;
+        .img-frontend{
+            max-height: 500px;
+        }
+    }
+
+    &.tanks{
+        text-align: center;
+    }
 }
 
-@include responsive(m) {
+@include responsive(t) {
     .parent {
         @include parent(prototype, $font_title_top, right, $img_h, $margin_parent_md);
+
+        &.frontend-develop {
+            margin-top: $margin_parent_md;
+        }
+    }
+}
+@include responsive (m){
+    .parent{
+        @include parent(prototype, $font_title_top, right, $img_h, $margin_parent_m);
     }
 }
 
@@ -23,13 +43,13 @@
     .screen-iphone {
         position: absolute;
         top: 10%;
-        right: -5px;
+        right: 0px;
         overflow: auto;
         text-align: center;
         height: 59%;
 
         .img-screen {
-            width: 93.4%;
+            width: 93.16%;
         }
 
     }
@@ -38,7 +58,6 @@
 .parent-reverse {
     @include parent(prototype, $font_title, left, $img_h, $margin_parent);
     @include center_row(20%);
-
 }
 
 
@@ -70,6 +89,40 @@
 
 }
 
+// about page
+.parent-reverse-design {
+    @include parent(prototype, $font_title, left, 400px, $margin_parent);
+    @include center_row(20%);
+}
+
+.about-page {
+    .img-h-about {
+        height: 300px;
+    }
+
+    .bg-design {
+        position: absolute;
+        bottom: -200px;
+        height: 250%;
+    }
+
+    @include responsive (t) {
+        .bg-design {
+            position: absolute;
+            bottom: -50px;
+            height: 150%;
+        }
+    }
+
+    @include responsive (m) {
+        .bg-design {
+            width: 100%;
+            position: absolute;
+            bottom: -50px;
+            height: 150%;
+        }
+    }
+}
 
 
 // page product
@@ -267,7 +320,6 @@
 }
 
 .contact {
-    margin: 180px 0 100px 0;
 
     .sub-txt {
         padding: 1rem;
@@ -348,6 +400,15 @@
 
         }
 
+    }
+    .img-login{
+        width: 70%;
+    }
+    @include responsive (t){
+        .img-login{
+            padding:20px 10px;
+            width:40%;
+        }
     }
 }
 
@@ -650,9 +711,11 @@
 
 
     }
-    .loading_blog{
+
+    .loading_blog {
         position: relative;
-        .loadingio-spinner-ellipsis-e0ra3xed6zw{
+
+        .loadingio-spinner-ellipsis-e0ra3xed6zw {
             height: 100px;
         }
     }
@@ -976,6 +1039,20 @@
 
 }
 
+
+// not found / 404 page
+.not-found{
+    text-align: center;
+    margin-top: 120px;
+
+    .item{
+        color: $bg_core_dark;
+
+        &:hover{
+            color: $color_btn_menu;
+        }
+    }
+}
 
 
 .footer {

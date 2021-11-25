@@ -8,6 +8,7 @@ import Product from '@/views/Product.vue'
 import Blogs from '@/views/Blogs.vue'
 import Login from '@/views/Login'
 import Dashboard from '@/views/Dashboard'
+import NotFoundPage from '@/views/404'
 import store from '../store'
 
 const routes = [{
@@ -42,6 +43,11 @@ const routes = [{
     meta: {
       requireLogin: true
     }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFoundPage',
+    component: NotFoundPage,
   },
 ]
 

@@ -4,7 +4,7 @@
 
 //padding
 @mixin parent ($font, $size, $float_img, $img_h, $margin) {
-    margin: $margin 0 0 0;
+    margin: $margin auto;
 
     .sub-txt {
         align-self: center;
@@ -17,6 +17,10 @@
             color: $color_txt_dark;
             display: inline-block;
             cursor: default;
+
+            &.center {
+                padding: 0 0 20px
+            }
         }
 
         .dec {
@@ -77,6 +81,8 @@
                 }
             }
         }
+
+
     }
 
     .sub-img {
@@ -100,6 +106,12 @@
             .img-float {
                 float: none;
                 text-align: center;
+            }
+        }
+
+        @include responsive (min){
+            .img-float{
+                width: 100%;
             }
         }
     }

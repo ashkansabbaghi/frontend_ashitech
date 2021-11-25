@@ -25,10 +25,11 @@ $color_success: #2eff20;
 $padding_side: 12.5rem; // 200 px
 $padding_side-pc: 6.5rem;
 $padding_row_top: 150px;
-$margin_parent : 180px;
+$margin_parent : 200px;
 $margin_parent_product : 120px;
 
 $margin_parent_md : 120px;
+$margin_parent_m : 0px;
 
 
 // font size
@@ -58,6 +59,7 @@ $height-part : 100vh;
 $height-part-pc : fit-content;
 $height-footer : fit-content !important;
 $height-header : 76px;
+$height-header-mobile : 60px;
 $height-header-blog : 0px;
 $height-header-blog-sm : 80px;
 
@@ -76,4 +78,4 @@ $transition_all : all 0.4s ease;
 $transition_all_btn : all 0.1s ease-in-out;
 
 //blur
-$backdrop_filter_header : blur(10px);
+$backdrop_filter_header : blur(30px);

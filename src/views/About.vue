@@ -1,33 +1,36 @@
 <template>
   <div class="About" @scroll="hScroll">
-    <div class="container animate__animated animate__fadeIn">
+    <div
+      class="container-fluid animate__animated animate__fadeIn p-0 about-page"
+    >
       <!-- about us -->
-      <div class="container-fluid parent ">
+      <div class="container parent">
         <div class="row">
           <div class="col-lg-6 sub-txt">
             <h1 class="title" v-text="about.title"></h1>
-            <p class="content" v-text="about.content"></p>
-            <button class="btn btn-cu-dark m">DEMO</button>
-            <button class="btn btn-cu-white">CONTACT</button>
+            <p class="content" v-html="about.content"></p>
+            <a class="btn btn-cu-dark m" href="#">DEMO</a>
+            <a class="btn btn-cu-white" href="tel:09102626830">CONTACT</a>
           </div>
           <div class="col-lg-6 sub-img align-self-center">
             <img
-              class="img-fluid img-float img-h w-100"
+              class="img-fluid img-float img-h img-h-about"
               src="@/assets/files/img/logo-about.svg"
-              alt="image-about"
+              alt="logo_image_ashiTech"
               loading="lazy"
             />
           </div>
         </div>
       </div>
       <!-- end about us -->
-      <!-- side iPhone -->
-      <div class="container-fluid slider responsive">
+
+      <!-- side ipad -->
+      <div class="container slider responsive">
         <div class="row">
           <div class="col-lg-12 p-0">
             <img
               class="img-fluid"
-              src="./../assets/files/img/iphon.png"
+              src="./../assets/files/img/ipad.svg"
               alt="image-about"
               loading="lazy"
             />
@@ -42,102 +45,134 @@
           </div>
         </div>
       </div>
-      <!-- end side iPhone -->
+      <!-- end side pad -->
 
-      <!-- introduction reverse 1 -->
-      <div class="container-fluid parent-reverse responsive-reverse">
-        <div class="row">
-          <div class="col-lg-6 sub-txt">
-            <div class="titles">
-              <h2 class="title" v-text="intro_1.title"></h2>
-              <span class="dec" v-text="intro_1.dec"></span>
+      <!-- design -->
+      <div
+        class="
+          container-fluid
+          parent-reverse-design
+          responsive-reverse
+          position-relative
+          p-0
+        "
+      >
+        <!-- bg design -->
+        <div>
+          <img
+            class="bg-design"
+            src="@/assets/files/img/bg-design.png"
+            alt=""
+          />
+        </div>
+        <div class="container">
+          <div class="row position-relative">
+            <div class="col-lg-6 sub-txt">
+              <div class="titles">
+                <h2 class="title" v-text="intro_1.title"></h2>
+                <span class="dec" v-text="intro_1.dec"></span>
+              </div>
+              <p class="content" v-text="intro_1.content"></p>
+              <!-- <button class="btn btn-cu-dark m">DEMO</button> -->
+              <a class="btn btn-cu-white" href="tel:09102626830">CONTACT</a>
             </div>
-            <p class="content" v-text="intro_1.content"></p>
-            <!-- <button class="btn btn-cu-dark m">DEMO</button> -->
-            <button class="btn btn-cu-white m">CONTACT</button>
-          </div>
-          <div class="col-lg-6 sub-img">
-            <img
-              class="img-float img-h"
-              src="./../assets/files/img/phone3D.png"
-              alt="image-about"
-              loading="lazy"
-            />
+            <div class="col-lg-6 sub-img">
+              <img
+                class="img-float img-h"
+                src="./../assets/files/img/iphonex.png"
+                alt="image-about"
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
       </div>
-      <!-- end introduction reverse 1 -->
+      <!-- end design -->
 
-      <!-- introduction 2 -->
-      <div class="container-fluid parent responsive">
+      <!-- frontend develop -->
+      <div class="container parent frontend-develop responsive">
         <div class="row">
           <div class="col-lg-6 sub-txt">
-            <h2 class="title" v-text="intro_2.title"></h2>
-            <span class="dec" v-text="intro_2.dec"></span>
-            <p class="content" v-text="intro_2.content"></p>
+            <h2 class="title" v-text="frontend.title"></h2>
+            <span class="dec" v-text="frontend.dec"></span>
+            <p class="content" v-html="frontend.content"></p>
             <!-- <button class="btn btn-cu-dark m">DEMO</button> -->
-            <button class="btn btn-cu-white m">CONTACT</button>
+            <a class="btn btn-cu-white" href="tel:09102626830">CONTACT</a>
           </div>
           <div class="col-lg-6 sub-img">
             <img
-              class="rounded img-float img-h"
-              src="./../assets/files/img/head.png"
+              class="rounded img-float img-frontend"
+              src="./../assets/files/img/frontend.png"
               alt="image-about"
               loading="lazy"
             />
           </div>
         </div>
       </div>
-      <!-- end introduction 2 -->
+      <!-- end frontend develop -->
+
+      <!-- tanks -->
+      <div class="container parent tanks responsive">
+        <div class="row">
+          <div class="col-lg-12 sub-txt">
+            <h2 class="title center" v-text="tanks.title"></h2>
+            <p class="content" v-html="tanks.content"></p>
+            <router-link to="/blogs"
+              ><a class="btn btn-cu-dark m" href="#">Come on</a>
+            </router-link>
+          </div>
+        </div>
+      </div>
+      <!-- end tanks -->
     </div>
     <!-- slider -->
-    <Carousel />
+    <!-- <Carousel /> -->
   </div>
 </template>
 
 <script>
-import Carousel from "@/components/Carousel.vue";
+// import Carousel from "@/components/Carousel.vue";
 export default {
   name: "About",
-  data() {
-    return {
-      about: {
-        title: "about us",
-        content:
-          "02: 30 AM UTC More than 95% of the environment has been built and the final performance optimization and security testing are carried out continuously to repair the inconsistency problems found in data verification. We will announce the relatively accurate external recovery steps of the platform in 12 hours",
-        img: "http//",
-      },
-      intro_1: {
-        title: "web design",
-        dec: "responsive",
-        content:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-        img: "http//",
-      },
-      intro_2: {
-        title: "3D designer",
-        dec: "create object from game",
-        content:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-        img: "http//",
-      },
-    };
-  },
+  data: () => ({
+    about: {
+      title: "Hello my friend",
+      content: `I will introduce myself to you <br> Let's start with the logo`,
+      img: "http//",
+    },
+    intro_1: {
+      title: "design",
+      dec: "responsive",
+      content: "Designed with software Adobe XD and Figma",
+      img: "http//",
+    },
+    frontend: {
+      title: "frontend develop",
+      dec: "responsive",
+      content:
+        "On the front site of technology <br> Vue Cli | VueX <br> Bootstrap 5",
+      img: "http//",
+    },
+    tanks: {
+      title: "Thank you very much",
+      content:
+        "I introduced myself to you very briefly <br> Do you want to go and see other content from me?",
+    },
+  }),
   components: {
-    Carousel,
+    // Carousel,
   },
   methods: {
     hScroll() {
       // this.vScroll = (document.body.scrollTop > 10 );
-      console.log('handleScroll');
+      console.log("handleScroll");
     },
-
   },
-  created () {
-    window.addEventListener('scroll', this.handleScroll);
+  created() {
+    window.addEventListener("scroll", this.handleScroll);
   },
-  unmounted () {
-    window.removeEventListener('scroll', this.handleScroll);
+  unmounted() {
+    window.removeEventListener("scroll", this.handleScroll);
   },
 };
 </script>

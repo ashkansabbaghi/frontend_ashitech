@@ -2,7 +2,7 @@
   <div class="contact-page">
     <!-- <div class="bg-contact"></div> -->
     <div class="container animate__animated animate__fadeIn">
-      <div class="container-fluid contact">
+      <div class="container-fluid contact parent">
         <div class="row">
           <!-- image -->
           <div class="col-lg-7 text-center text-lg-start">
@@ -11,7 +11,7 @@
               By logging in<br />
               you can see more <br />features of the site
             </h3> -->
-            <img src="@/assets/files/img/iullustratio-login.svg" alt="" />
+            <img class="img-login" src="@/assets/files/img/iullustratio-login.svg" alt="login image" />
           </div>
           <!-- login -->
           <div class="col-lg-5 msg">

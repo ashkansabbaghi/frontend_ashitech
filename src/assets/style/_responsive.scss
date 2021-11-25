@@ -2,12 +2,18 @@
 
 @mixin responsive ($point) {
 
-    @if $point==s {
+    @if $point==min {
+        @media screen and (max-width : 400px) {
+            @content
+        }
+    }
+    @else if $point==s {
         @media screen and (max-width : 550px) {
             @content
         }
     }
-    @if $point==m {
+
+    @else if $point==m {
         @media screen and (max-width : 767px) {
             @content
         }

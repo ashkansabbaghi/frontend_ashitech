@@ -1,5 +1,5 @@
 <template>
-  <div class="home p-5 text-center">
+  <div class="home p-5 mt-5 text-center">
 <img src="@/assets/files/img/logo-about.svg" alt="">
   </div>
 </template>
